@@ -76,7 +76,6 @@ function stopHeroScroll() {
 
 // Contact Us 폼
 const inquiryTypes = [
-  { value: '', label: '문의 유형 선택' },
   { value: 'product', label: '제품구매' },
   { value: 'delivery', label: '배송' },
   { value: 'exchange', label: '교환' },
@@ -309,7 +308,7 @@ onUnmounted(() => {
           <form class="contact-form" @submit.prevent>
             <div class="contact-form__row contact-form__row--2col">
               <div class="contact-form__field">
-                <label for="contact-company">상호/담당자</label>
+                
                 <input
                   id="contact-company"
                   v-model="contactForm.company"
@@ -318,18 +317,16 @@ onUnmounted(() => {
                 />
               </div>
               <div class="contact-form__field">
-                <label for="contact-email">이메일</label>
                 <input
                   id="contact-email"
                   v-model="contactForm.email"
                   type="email"
-                  placeholder="example@email.com"
+                  placeholder="이메일"
                 />
               </div>
             </div>
             <div class="contact-form__row contact-form__row--2col">
               <div class="contact-form__field">
-                <label for="contact-region">지역</label>
                 <input
                   id="contact-region"
                   v-model="contactForm.region"
@@ -338,7 +335,6 @@ onUnmounted(() => {
                 />
               </div>
               <div class="contact-form__field">
-                <label for="contact-phone">연락처</label>
                 <input
                   id="contact-phone"
                   v-model="contactForm.phone"
@@ -347,26 +343,31 @@ onUnmounted(() => {
                 />
               </div>
             </div>
-            <div class="contact-form__row">
+            <!--<div class="contact-form__row">
               <div class="contact-form__field">
-                <label for="contact-type">문의 유형</label>
-                <select
-                  id="contact-type"
-                  v-model="contactForm.inquiryType"
-                >
-                  <option
+                <div
+                  class="contact-form__radio-group"
+                  role="radiogroup"
+                  aria-labelledby="contact-type-label">
+                  <div
+                    class="contact-form__radio"
                     v-for="opt in inquiryTypes"
-                    :key="opt.value"
-                    :value="opt.value"
-                  >
-                    {{ opt.label }}
-                  </option>
-                </select>
+                    :key="opt.value">
+                    <label>
+                      <input
+                        type="radio"
+                        name="contact-type"
+                        v-model="contactForm.inquiryType"
+                        :value="opt.value"
+                      />
+                      <span>{{ opt.label }}</span>
+                    </label>
+                  </div>
+                </div>
               </div>
-            </div>
+            </div>-->
             <div class="contact-form__row">
               <div class="contact-form__field">
-                <label for="contact-message">문의사항</label>
                 <textarea
                   id="contact-message"
                   v-model="contactForm.message"
@@ -544,7 +545,9 @@ onUnmounted(() => {
   color: var(--color-heading);
 }
 
-.contact-form__field input,
+.contact-form__field input[type="text"],
+.contact-form__field input[type="email"],
+.contact-form__field input[type="tel"],
 .contact-form__field select,
 .contact-form__field textarea {
   width: 100%;
@@ -552,13 +555,40 @@ onUnmounted(() => {
   border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 0.9rem;
-  background: var(--color-background);
+  background: #f1f3fa;
   color: var(--color-text);
 }
 
 .contact-form__field textarea {
   resize: vertical;
   min-height: 100px;
+}
+
+.contact-form__radio-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-form__label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-heading);
+  margin-right: 0.5rem;
+}
+
+.contact-form__radio label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.contact-form__radio input[type="radio"] {
+  width: auto;
+  margin: 0;
 }
 
 .contact-form__actions {

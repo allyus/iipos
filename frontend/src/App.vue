@@ -438,7 +438,6 @@ nav a {
 .footer {
   margin-top: auto;
   border-top: 1px solid var(--color-border);
-  background: var(--color-background-soft, var(--color-background));
 }
 
 .footer__wrapper {
@@ -494,7 +493,7 @@ nav a {
 }
 
 :global(body) {
-  background: #f5f7ff;
+  background: #f5f6f8;
   
 }
 </style>
