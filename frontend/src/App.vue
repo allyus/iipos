@@ -492,4 +492,8 @@ nav a {
   color: var(--color-border);
   user-select: none;
 }
+
+:global(body) {
+  background: var(--color-background-soft);
+}
 </style>

@@ -93,71 +93,69 @@ onUnmounted(() => {
         <article class="banner-item">
           <img
             class="banner-item__img"
-            src="/banner/start.jpg"
+            src="/banner/1512$1$손오공현금.png"
             alt="바로 시작하기"
             loading="lazy"
           />
-          <span class="banner-item__caption">시작하기</span>
+          <span class="banner-item__caption">손오공현금</span>
         </article>
         <article class="banner-item">
           <img
             class="banner-item__img"
-            src="/banner/start.jpg"
+            src="/banner/1513$1$리그오브레전드4.png"
             alt="바로 시작하기"
             loading="lazy"
           />
-          <span class="banner-item__caption">시작하기</span>
+          <span class="banner-item__caption">리그오브레전드4</span>
+        </article>
+        <article class="banner-item">
+          <img
+            class="banner-item__img"
+            src="/banner/1512$1$손오공현금.png"
+            alt="바로 시작하기"
+            loading="lazy"
+          />
+          <span class="banner-item__caption">손오공현금</span>
+        </article>
+        <article class="banner-item">
+          <img
+            class="banner-item__img"
+            src="/banner/1513$1$리그오브레전드4.png"
+            alt="바로 시작하기"
+            loading="lazy"
+          />
+          <span class="banner-item__caption">리그오브레전드4</span>
+        </article>
+        <article class="banner-item">
+          <img
+            class="banner-item__img"
+            src="/banner/1512$1$손오공현금.png"
+            alt="바로 시작하기"
+            loading="lazy"
+          />
+          <span class="banner-item__caption">손오공현금</span>
+        </article>
+        <article class="banner-item">
+          <img
+            class="banner-item__img"
+            src="/banner/1513$1$리그오브레전드4.png"
+            alt="바로 시작하기"
+            loading="lazy"
+          />
+          <span class="banner-item__caption">리그오브레전드4</span>
         </article>
 
-        <article class="banner-item">
-          <img
-            class="banner-item__img"
-            src="/banner/start.jpg"
-            alt="바로 시작하기"
-            loading="lazy"
-          />
-          <span class="banner-item__caption">시작하기</span>
-        </article>
-
-        <article class="banner-item">
-          <img
-            class="banner-item__img"
-            src="/banner/start.jpg"
-            alt="바로 시작하기"
-            loading="lazy"
-          />
-          <span class="banner-item__caption">시작하기</span>
-        </article>
-
-        <article class="banner-item">
-          <img
-            class="banner-item__img"
-            src="/banner/start.jpg"
-            alt="바로 시작하기"
-            loading="lazy"
-          />
-          <span class="banner-item__caption">시작하기</span>
-        </article>
-
-        <article class="banner-item">
-          <img
-            class="banner-item__img"
-            src="/banner/start.jpg"
-            alt="바로 시작하기"
-            loading="lazy"
-          />
-          <span class="banner-item__caption">시작하기</span>
-        </article>
+        
         
       </div>
     </section>
 
-    <section class="quick-actions">
-      
+    <section class="quick-actions" aria-label="바로가기">
+      <h2 class="section-title section-title--compact">바로가기</h2>
       <ul class="action-list">
         <li>
           <router-link to="/about" class="action-link">
-            <span class="action-link__icon">📝</span>
+            <span class="action-link__icon">🌐</span>
             <span class="action-link__label">회원가입</span>
           </router-link>
         </li>
@@ -170,26 +168,20 @@ onUnmounted(() => {
         
         <li>
           <a href="#" class="action-link" @click.prevent>
-            <span class="action-link__icon">📱</span>
+            <span class="action-link__icon">🕹️</span>
             <span class="action-link__label">기기장터</span>
           </a>
         </li>
        
         <li>
           <a href="#" class="action-link" @click.prevent>
-            <span class="action-link__icon">📹</span>
+            <span class="action-link__icon">📽️</span>
             <span class="action-link__label">동영상자료실</span>
           </a>
         </li>
         <li>
           <a href="#" class="action-link" @click.prevent>
             <span class="action-link__icon">💬</span>
-            <span class="action-link__label">문의하기</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="action-link" @click.prevent>
-            <span class="action-link__icon">☎️</span>
             <span class="action-link__label">문의하기</span>
           </a>
         </li>
@@ -231,6 +223,7 @@ onUnmounted(() => {
 
 
     <section class="download-section" aria-label="자료 다운로드">
+      <h2 class="section-title">자료 다운로드</h2>
       <div class="download-grid">
         <article
           v-for="item in downloadItems"
@@ -261,6 +254,7 @@ onUnmounted(() => {
 
     <!-- 자료 다운로드 하위: CS Center(좌) + Contact Us(우) -->
     <section class="cs-contact-section" aria-label="고객센터 및 문의">
+      <h2 class="section-title">고객센터 및 문의</h2>
       <div class="cs-contact-row">
         <div class="cs-center-block">
           <h3 class="cs-center-block__title">CS Center</h3>
@@ -377,6 +371,8 @@ onUnmounted(() => {
 .home__main {
   width: 100%;
   min-width: 0;
+  padding: 1rem 1rem 0;
+  box-sizing: border-box;
 }
 
 /* PC 전용 좌/우 배너: 모바일에서는 숨김 */
@@ -410,19 +406,26 @@ onUnmounted(() => {
 }
 
 .section-title {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-heading);
   margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.section-title--compact {
+  margin-bottom: 0.75rem;
 }
 
 .download-section {
-  padding: 1.5rem 0 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
 }
 
 /* 자료 다운로드 하위: CS Center + Contact Us */
 .cs-contact-section {
-  padding: 0 0 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-border);
 }
 
 .cs-contact-row {
@@ -438,12 +441,6 @@ onUnmounted(() => {
   border-radius: 12px;
 }
 
-.cs-center-block__title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 0.75rem;
-  color: var(--color-heading);
-}
 
 .cs-center-block__tel {
   font-size: 0.95rem;
@@ -471,11 +468,16 @@ onUnmounted(() => {
   border-radius: 12px;
 }
 
-.contact-us-block__title {
-  font-size: 1rem;
+.contact-us-block__title,
+.cs-center-block__title {
+  font-size: 0.95rem;
   font-weight: 600;
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   color: var(--color-heading);
+}
+
+.contact-us-block__title {
+  margin-bottom: 1rem;
 }
 
 .contact-form {
@@ -613,12 +615,14 @@ onUnmounted(() => {
   font-size: 0.9rem;
 }
 
-/* ----- 배너 (좌→우 3개) ----- */
+/* ----- 배너 (좌→우 가로 스크롤) ----- */
 .hero-banner {
   position: relative;
+  margin: 0 -1rem;
   width: calc(100% + 2rem);
-  overflow: hidden;
-  padding: 0.5rem 0 1.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0 1.5rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox: 스크롤바 숨김 */
 }
@@ -637,12 +641,10 @@ onUnmounted(() => {
 .banner-item {
   flex: 0 0 auto;
   width: 170px;
-  min-height: 180px;
-  height: 180px;
-  border-radius: 14px;
+  border-radius: 0;
   overflow: hidden;
-  position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   background: var(--color-background-mute);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -654,31 +656,28 @@ onUnmounted(() => {
 
 .banner-item__img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
 }
 
 .banner-item__caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: 0.4rem 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #fff;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  color: var(--color-text);
+  text-align: center;
+  background: var(--color-background-soft);
 }
 
-/* ----- 꽉찬 배너 (1/3 표시, 3초 롤링) ----- */
-/* main 좌/우 padding만 배너만 예외로 full 너비 */
+/* ----- 꽉찬 배너 (1/3 표시, 5초 롤링, 모바일 전용) ----- */
 .banner {
   position: relative;
-  margin: 0 -1rem 1.5rem;
+  margin: 0 -1rem 2rem;
   width: calc(100% + 2rem);
-  border-radius: 0;
+  border-radius: 8px;
   overflow: hidden;
+  border: 1px solid var(--color-border);
 }
 
 .banner__viewport {
@@ -745,7 +744,8 @@ onUnmounted(() => {
 .dashboard { order: 6; }
 
 .quick-actions {
-  padding: 0 0 2rem;
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid var(--color-border);
 }
 
 .action-list {
@@ -753,8 +753,8 @@ onUnmounted(() => {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.25rem 0.5rem; /* 위·아래 줄 간격 넓힘 */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem 0.75rem;
 }
 
 .action-list li {
@@ -834,33 +834,15 @@ onUnmounted(() => {
     display: none;
   }
 
-  /* hero-banner: PC에서 100% 너비로 모든 컨텐츠 한 줄에 표시 */
-  .hero-banner {
-    display: block;
-    width: 100%;
-    overflow: visible;
-    padding: 0.5rem 0 1.25rem;
-  }
-
-  .hero-banner .banner-track {
-    width: 100%;
-    min-width: 0;
-    flex-wrap: nowrap;
-  }
-
-  .hero-banner .banner-item {
-    flex: 1 1 0;
-    min-width: 0;
-    width: auto;
-  }
+  /* hero-banner: PC에서도 모바일과 동일한 가로 스크롤(고정 너비 아이템) 유지 */
 
   .quick-actions {
-    padding: 1rem 0 2rem;
+    display: none;
   }
 
   .action-list {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.25rem 1rem; /* 위·아래 줄 간격 넓힘 */
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem 1.25rem;
   }
 
   .action-link__icon {
