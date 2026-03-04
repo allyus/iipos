@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아이포스 - 안면인식 시스템 | 매장 관리 시스템</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <span class="logo-icon">ipos</span>
+        <span class="logo-text">아이포스</span>
+      </a>
+      <nav class="nav">
+        <a href="#shop">쇼핑몰</a>
+        <a href="#media">동영상 자료실</a>
+        <a href="#buy">삽니다</a>
+        <a href="#sell">팝니다</a>
+        <a href="#support">고객센터</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn-ghost">로그인</a>
+        <a href="#" class="btn-ghost">회원가입</a>
+        <a href="#" class="btn-ghost">주문내역</a>
+        <a href="#" class="btn-ghost">장바구니</a>
+      </div>
+      <button type="button" class="menu-toggle" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 모바일 전용 메뉴 (헤더 밖, body 직하위) -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu-nav">
+      <a href="#shop">쇼핑몰</a>
+      <a href="#media">동영상 자료실</a>
+      <a href="#buy">삽니다</a>
+      <a href="#sell">팝니다</a>
+      <a href="#support">고객센터</a>
+    </nav>
+  </div>
+
+  <!-- 메인 비주얼 -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-slider">
+      <div class="slide active">
+        <span class="hero-badge">NEW 안면인식 시스템</span>
+        <h1 class="hero-title">아이포스</h1>
+        <p class="hero-desc">어플만으로도 매장 모든 데이터를<br />파악할 수 있는 관리시스템</p>
+      </div>
+      <div class="slide">
+        <span class="hero-badge">실시간 분석</span>
+        <h1 class="hero-title">매장 데이터</h1>
+        <p class="hero-desc">안면인식 기반 출입·방문자 분석으로<br />운영 효율을 높입니다</p>
+      </div>
+      <div class="slide">
+        <span class="hero-badge">통합 솔루션</span>
+        <h1 class="hero-title">원스톱 관리</h1>
+        <p class="hero-desc">설치부터 정산까지<br />아이포스 하나로 해결하세요</p>
+      </div>
+    </div>
+    <div class="hero-nav">
+      <button type="button" class="hero-prev" aria-label="이전">prev</button>
+      <button type="button" class="hero-next" aria-label="다음">next</button>
+    </div>
+    <div class="hero-dots"></div>
+  </section>
+
+  <!-- 제품 소개 -->
+  <section class="section section-product" id="shop">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">product</span>
+        <h2 class="section-title">제품 및 서비스</h2>
+      </div>
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-img"><span>안면인식</span></div>
+          <h3>매장 안면인식</h3>
+          <p>매장 출입·방문자 분석</p>
+        </article>
+        <article class="product-card">
+          <div class="product-img"><span>관리자</span></div>
+          <h3>관리자 앱</h3>
+          <p>원격 모니터링·설정</p>
+        </article>
+        <article class="product-card">
+          <div class="product-img"><span>정산</span></div>
+          <h3>정산 시스템</h3>
+          <p>매출·정산 통합</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 동영상 자료실 -->
+  <section class="section section-media" id="media">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">media</span>
+        <h2 class="section-title">동영상 자료실</h2>
+        <a href="#" class="link-more">more view</a>
+      </div>
+      <div class="media-grid">
+        <a href="#" class="media-card">
+          <div class="media-thumb"><span>재생</span></div>
+          <span class="media-title">아이포스 소개</span>
+        </a>
+        <a href="#" class="media-card">
+          <div class="media-thumb"><span>재생</span></div>
+          <span class="media-title">설치 가이드</span>
+        </a>
+        <a href="#" class="media-card">
+          <div class="media-thumb"><span>재생</span></div>
+          <span class="media-title">관리자 사용법</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 삽니다 / 팝니다 -->
+  <section class="section section-board">
+    <div class="container container-wide">
+      <div class="board-grid">
+        <div class="board-box" id="buy">
+          <h3 class="board-title">삽니다</h3>
+          <ul class="board-list">
+            <li><a href="#">테스트<span>2020.05.04</span></a></li>
+            <li><a href="#">공지사항<span>2020.02.06</span></a></li>
+            <li><a href="#">중고<span>2019.11.26</span></a></li>
+          </ul>
+          <a href="#" class="link-more">more view</a>
+        </div>
+        <div class="board-box" id="sell">
+          <h3 class="board-title">팝니다</h3>
+          <ul class="board-list">
+            <li><a href="#">공지사항 테스트2<span>2020.05.04</span></a></li>
+            <li><a href="#">공지사항 테스트<span>2020.05.04</span></a></li>
+            <li><a href="#">팝니다 테스트<span>2020.05.04</span></a></li>
+          </ul>
+          <a href="#" class="link-more">more view</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 다운로드 -->
+  <section class="section section-download">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">download</span>
+        <h2 class="section-title">앱 다운로드</h2>
+      </div>
+      <div class="download-grid">
+        <a href="#" class="download-card">
+          <span class="download-icon">📱</span>
+          <span class="download-name">안면(매장)</span>
+          <span class="download-desc">매장용 앱</span>
+          <span class="download-btn">download</span>
+        </a>
+        <a href="#" class="download-card">
+          <span class="download-icon">⚙️</span>
+          <span class="download-name">관리자</span>
+          <span class="download-desc">관리자 앱</span>
+          <span class="download-btn">download</span>
+        </a>
+        <a href="#" class="download-card">
+          <span class="download-icon">📊</span>
+          <span class="download-name">정산</span>
+          <span class="download-desc">정산 앱</span>
+          <span class="download-btn">download</span>
+        </a>
+        <a href="#" class="download-card">
+          <span class="download-icon">🏪</span>
+          <span class="download-name">매장ABI</span>
+          <span class="download-desc">매장 ABI</span>
+          <span class="download-btn">download</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 고객센터 + 공지 -->
+  <section class="section section-support" id="support">
+    <div class="container container-wide">
+      <div class="support-grid">
+        <div class="support-info">
+          <h2 class="section-title">고객센터</h2>
+          <p class="support-desc">궁금하신 사항 문의 주시면 친절히 답변 드리겠습니다.</p>
+          <a href="#contact" class="btn-primary">detail view</a>
+        </div>
+        <div class="notice-box">
+          <h3 class="notice-title">notice & news</h3>
+          <ul class="notice-list">
+            <li><a href="#">123123</a><span>2020.04.21</span></li>
+            <li><a href="#">제목 테스트</a><span>2020.04.21</span></li>
+            <li><a href="#">교환 및 반품안내</a><span>2020.01.30</span></li>
+            <li><a href="#">주문취소안내</a><span>2020.01.30</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 문의하기 -->
+  <section class="section section-contact" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">contact</span>
+        <h2 class="section-title">문의하기</h2>
+      </div>
+      <form class="contact-form">
+        <div class="form-row">
+          <label>문의유형</label>
+          <select>
+            <option>제품</option>
+            <option>구매</option>
+            <option>배송</option>
+            <option>교환</option>
+            <option>렌탈</option>
+            <option>반품</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>개인정보 취급방침 동의</label>
+          <label class="checkbox-label">
+            <input type="checkbox" required />
+            <span>개인정보 취급방침에 동의합니다. <a href="#">자세히 보기</a></span>
+          </label>
+        </div>
+        <button type="submit" class="btn-primary btn-block">문의하기</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-info">
+          <h4>cs center</h4>
+          <p>TEL : 010-3122-1237</p>
+          <p>평일 10:00 ~ 17:00 / 점심 12:00 ~ 13:00 (주말·공휴일 휴무)</p>
+        </div>
+        <div class="footer-info">
+          <h4>bank info</h4>
+          <p>국민은행 752601-04-272996</p>
+          <p>예금주 <strong>드림시스템</strong></p>
+        </div>
+        <div class="footer-links">
+          <a href="#">개인정보취급방침</a>
+          <a href="#">이용약관</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-company">
+          <span class="logo-text">아이포스</span>
+          <p>드림시스템 | 대표 : 한상민</p>
+          <p>경기도 광명시 오리로651번길 8 (하안동) 710호</p>
+          <p>사업자등록번호: 288-54-00150 | Tel : 010-3122-1237 | E-mail: dreamsst@naver.com</p>
+        </div>
+        <p class="copyright">Copyright (C) 2025 ipos Co. Ltd. All rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
