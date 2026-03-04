@@ -40,6 +40,25 @@ function goToBanner(idx: number) {
   bannerIndex.value = idx
 }
 
+// Contact Us 폼
+const inquiryTypes = [
+  { value: '', label: '문의 유형 선택' },
+  { value: 'product', label: '제품구매' },
+  { value: 'delivery', label: '배송' },
+  { value: 'exchange', label: '교환' },
+  { value: 'rental', label: '렌탈' },
+  { value: 'return', label: '반품' },
+  { value: 'etc', label: '기타' },
+]
+const contactForm = ref({
+  company: '',
+  email: '',
+  region: '',
+  phone: '',
+  inquiryType: '',
+  message: '',
+})
+
 onMounted(() => {
   bannerTimer = setInterval(nextBanner, 5000)
 })
@@ -239,7 +258,94 @@ onUnmounted(() => {
         </article>
       </div>
     </section>
-    
+
+    <!-- 자료 다운로드 하위: CS Center(좌) + Contact Us(우) -->
+    <section class="cs-contact-section" aria-label="고객센터 및 문의">
+      <div class="cs-contact-row">
+        <div class="cs-center-block">
+          <h3 class="cs-center-block__title">CS Center</h3>
+          <p class="cs-center-block__tel">TEL : 010-3122-1237</p>
+          <p class="cs-center-block__hours">평일 10:00 ~ 17:00 / 점심시간 12:00 ~ 13:00</p>
+          <p class="cs-center-block__note">(주말, 공휴일 휴무)</p>
+        </div>
+        <div class="contact-us-block">
+          <h3 class="contact-us-block__title">Contact Us</h3>
+          <form class="contact-form" @submit.prevent>
+            <div class="contact-form__row contact-form__row--2col">
+              <div class="contact-form__field">
+                <label for="contact-company">상호/담당자</label>
+                <input
+                  id="contact-company"
+                  v-model="contactForm.company"
+                  type="text"
+                  placeholder="상호명 또는 담당자명"
+                />
+              </div>
+              <div class="contact-form__field">
+                <label for="contact-email">이메일</label>
+                <input
+                  id="contact-email"
+                  v-model="contactForm.email"
+                  type="email"
+                  placeholder="example@email.com"
+                />
+              </div>
+            </div>
+            <div class="contact-form__row contact-form__row--2col">
+              <div class="contact-form__field">
+                <label for="contact-region">지역</label>
+                <input
+                  id="contact-region"
+                  v-model="contactForm.region"
+                  type="text"
+                  placeholder="지역"
+                />
+              </div>
+              <div class="contact-form__field">
+                <label for="contact-phone">연락처</label>
+                <input
+                  id="contact-phone"
+                  v-model="contactForm.phone"
+                  type="tel"
+                  placeholder="연락처"
+                />
+              </div>
+            </div>
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="contact-type">문의 유형</label>
+                <select
+                  id="contact-type"
+                  v-model="contactForm.inquiryType"
+                >
+                  <option
+                    v-for="opt in inquiryTypes"
+                    :key="opt.value"
+                    :value="opt.value"
+                  >
+                    {{ opt.label }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="contact-message">문의사항</label>
+                <textarea
+                  id="contact-message"
+                  v-model="contactForm.message"
+                  rows="5"
+                  placeholder="문의 내용을 입력해 주세요."
+                />
+              </div>
+            </div>
+            <div class="contact-form__actions">
+              <button type="submit" class="contact-form__submit">문의하기</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <!-- PC 전용: 대시보드형 레이아웃 -->
     </div>
@@ -312,6 +418,124 @@ onUnmounted(() => {
 
 .download-section {
   padding: 1.5rem 0 2rem;
+}
+
+/* 자료 다운로드 하위: CS Center + Contact Us */
+.cs-contact-section {
+  padding: 0 0 2rem;
+}
+
+.cs-contact-row {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+.cs-center-block {
+  padding: 1.25rem;
+  background: var(--color-background-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.cs-center-block__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--color-heading);
+}
+
+.cs-center-block__tel {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+.cs-center-block__hours,
+.cs-center-block__note {
+  font-size: 0.85rem;
+  margin: 0;
+  color: var(--vt-c-text-light-2);
+  line-height: 1.5;
+}
+
+.cs-center-block__note {
+  margin-top: 0.25rem;
+}
+
+.contact-us-block {
+  padding: 1.25rem;
+  background: var(--color-background-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.contact-us-block__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--color-heading);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.contact-form__row--2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.contact-form__field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-heading);
+}
+
+.contact-form__field input,
+.contact-form__field select,
+.contact-form__field textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.contact-form__field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact-form__actions {
+  margin-top: 0.5rem;
+}
+
+.contact-form__submit {
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--vt-c-indigo);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.contact-form__submit:hover {
+  opacity: 0.9;
 }
 
 .download-grid {
@@ -507,7 +731,7 @@ onUnmounted(() => {
 }
 
 /* ----- 모바일 우선 (768px 미만) ----- */
-/* 모바일에서 보이는 순서: hero-banner → quick-actions → banner → download → dashboard */
+/* 모바일에서 보이는 순서: hero-banner → quick-actions → banner → download → cs-contact → dashboard */
 .home {
   display: flex;
   flex-direction: column;
@@ -517,7 +741,8 @@ onUnmounted(() => {
 .quick-actions { order: 2; }
 .banner { order: 3; }
 .download-section { order: 4; }
-.dashboard { order: 5; }
+.cs-contact-section { order: 5; }
+.dashboard { order: 6; }
 
 .quick-actions {
   padding: 0 0 2rem;
@@ -584,6 +809,10 @@ onUnmounted(() => {
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+
+  .cs-contact-row {
+    grid-template-columns: 320px 1fr;
   }
 
   /* 좌/우 배너: PC에서만 표시, 스크롤 시 본문과 함께 내려감 */
