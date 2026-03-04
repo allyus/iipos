@@ -32,12 +32,46 @@ const bannerIndex = ref(0)
 const BANNER_COUNT = 3
 let bannerTimer: ReturnType<typeof setInterval> | null = null
 
+// 좌→우 가로 배너 자동 슬라이드
+const heroBannerRef = ref<HTMLElement | null>(null)
+let heroScrollTimer: ReturnType<typeof setInterval> | null = null
+
 function nextBanner() {
   bannerIndex.value = (bannerIndex.value + 1) % BANNER_COUNT
 }
 
 function goToBanner(idx: number) {
   bannerIndex.value = idx
+}
+
+function startHeroScroll() {
+  const container = heroBannerRef.value
+  if (!container) return
+
+  // 중복 실행 방지
+  if (heroScrollTimer) {
+    clearInterval(heroScrollTimer)
+  }
+
+  heroScrollTimer = setInterval(() => {
+    const el = heroBannerRef.value
+    if (!el) return
+
+    const maxScroll = el.scrollWidth - el.clientWidth
+
+    if (el.scrollLeft >= maxScroll) {
+      el.scrollLeft = 0
+    } else {
+      el.scrollLeft += 1
+    }
+  }, 20)
+}
+
+function stopHeroScroll() {
+  if (heroScrollTimer) {
+    clearInterval(heroScrollTimer)
+    heroScrollTimer = null
+  }
 }
 
 // Contact Us 폼
@@ -61,10 +95,12 @@ const contactForm = ref({
 
 onMounted(() => {
   bannerTimer = setInterval(nextBanner, 5000)
+  startHeroScroll()
 })
 
 onUnmounted(() => {
   if (bannerTimer) clearInterval(bannerTimer)
+  stopHeroScroll()
 })
 </script>
 
@@ -87,8 +123,14 @@ onUnmounted(() => {
     <div class="home__main">
     <!-- 꽉찬 배너 (모바일: 가로 슬라이더 / PC: 좌측 세로 180px) -->
  
-    <!-- 좌→우 배너 (가로 스크롤) -->
-    <section class="hero-banner" aria-label="메인 배너">
+    <!-- 좌→우 배너 (가로 스크롤 + 자동 슬라이드) -->
+    <section
+      ref="heroBannerRef"
+      class="hero-banner"
+      aria-label="메인 배너"
+      @mouseenter="stopHeroScroll"
+      @mouseleave="startHeroScroll"
+    >
       <div class="banner-track">
         <article class="banner-item">
           <img
@@ -436,7 +478,6 @@ onUnmounted(() => {
 
 .cs-center-block {
   padding: 1.25rem;
-  background: var(--color-background-soft);
   border: 1px solid var(--color-border);
   border-radius: 12px;
 }
@@ -463,7 +504,6 @@ onUnmounted(() => {
 
 .contact-us-block {
   padding: 1.25rem;
-  background: var(--color-background-soft);
   border: 1px solid var(--color-border);
   border-radius: 12px;
 }
@@ -552,7 +592,6 @@ onUnmounted(() => {
   gap: 0.75rem;
   padding: 0.9rem 0.75rem;
   border-radius: 12px;
-  background: var(--color-background-soft);
   border: 1px solid var(--color-border);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
@@ -640,12 +679,11 @@ onUnmounted(() => {
 
 .banner-item {
   flex: 0 0 auto;
-  width: 170px;
+  width: 300px;
   border-radius: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: var(--color-background-mute);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -655,10 +693,9 @@ onUnmounted(() => {
 }
 
 .banner-item__img {
-  width: 100%;
+  width: auto;
+  height: auto;
   display: block;
-  object-fit: cover;
-  aspect-ratio: 3 / 4;
 }
 
 .banner-item__caption {
@@ -667,7 +704,6 @@ onUnmounted(() => {
   font-weight: 600;
   color: var(--color-text);
   text-align: center;
-  background: var(--color-background-soft);
 }
 
 /* ----- 꽉찬 배너 (1/3 표시, 5초 롤링, 모바일 전용) ----- */

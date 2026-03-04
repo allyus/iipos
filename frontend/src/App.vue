@@ -287,7 +287,7 @@ nav a {
 /* Contact section (above footer) */
 .contact-section {
   border-top: 1px solid var(--color-border);
-  background: var(--color-background-soft, var(--color-background));
+  background: #f5f7ff;
 }
 
 .contact-section__wrapper {
@@ -494,6 +494,7 @@ nav a {
 }
 
 :global(body) {
-  background: var(--color-background-soft);
+  background: #f5f7ff;
+  
 }
 </style>
