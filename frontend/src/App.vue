@@ -64,20 +64,6 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
     <!-- 모바일 드롭다운 -->
     <div class="mobile-menu" :class="{ 'is-open': menuOpen }">
-      <nav class="mobile-menu__nav">
-        <RouterLink to="/maejangter" class="mobile-link" @click="closeMenu">
-          <span class="mobile-link__icon">🏪</span>매장장터
-        </RouterLink>
-        <RouterLink to="/gijangter" class="mobile-link" @click="closeMenu">
-          <span class="mobile-link__icon">🕹️</span>기기장터
-        </RouterLink>
-        <RouterLink to="/video-library" class="mobile-link" @click="closeMenu">
-          <span class="mobile-link__icon">📽️</span>동영상자료실
-        </RouterLink>
-        <a href="#contact" class="mobile-link" @click="closeMenu">
-          <span class="mobile-link__icon">💬</span>문의하기
-        </a>
-      </nav>
       <div class="mobile-menu__auth">
         <template v-if="authStore.isAuthenticated">
           <p class="auth-name auth-name--mobile">{{ authStore.user?.userName }}님 환영합니다</p>
@@ -300,7 +286,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 }
 
 .mobile-menu.is-open {
-  max-height: 450px;
+  max-height: 180px;
 }
 
 .mobile-menu__nav {

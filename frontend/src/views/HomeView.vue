@@ -72,47 +72,43 @@ onUnmounted(() => {
 <template>
   <div class="home">
 
-    <!-- ── 히어로 슬라이더 ── -->
-    <section class="hero" aria-label="메인 배너">
-      <div class="hero__viewport">
+    <!-- ── 추천 상품 (가로 스크롤) ── -->
+    <section class="product-banner" aria-label="추천 상품">
+      <div class="product-banner__inner">
+        <h2 class="section-title">추천 상품</h2>
         <div
-          class="hero__track"
-          :style="{ transform: `translateX(-${heroIndex * 100}%)` }"
+          ref="productBannerRef"
+          class="product-banner__track"
+          @mouseenter="stopScroll"
+          @mouseleave="startScroll"
+          @touchstart="stopScroll"
+          @touchend="startScroll"
         >
-          <div class="hero__slide hero__slide--1">
-            <img src="/banner/start.jpg" alt="IIPOS 바로 시작하기" class="hero__img" />
-          </div>
-          <div class="hero__slide hero__slide--2">
-            <img src="/banner/start.jpg" alt="IIPOS 신뢰할 수 있는 파트너" class="hero__img" />
-          </div>
-          <div class="hero__slide hero__slide--3">
-            <img src="/banner/start.jpg" alt="IIPOS 전국 서비스" class="hero__img" />
-          </div>
+          <article class="product-card">
+            <img class="product-card__img" src="/banner/1512$1$손오공현금.png" alt="손오공현금" loading="lazy" />
+            <span class="product-card__label">손오공현금</span>
+          </article>
+          <article class="product-card">
+            <img class="product-card__img" src="/banner/1513$1$리그오브레전드4.png" alt="리그오브레전드4" loading="lazy" />
+            <span class="product-card__label">리그오브레전드4</span>
+          </article>
+          <article class="product-card">
+            <img class="product-card__img" src="/banner/1512$1$손오공현금.png" alt="손오공현금" loading="lazy" />
+            <span class="product-card__label">손오공현금</span>
+          </article>
+          <article class="product-card">
+            <img class="product-card__img" src="/banner/1513$1$리그오브레전드4.png" alt="리그오브레전드4" loading="lazy" />
+            <span class="product-card__label">리그오브레전드4</span>
+          </article>
+          <article class="product-card">
+            <img class="product-card__img" src="/banner/1512$1$손오공현금.png" alt="손오공현금" loading="lazy" />
+            <span class="product-card__label">손오공현금</span>
+          </article>
+          <article class="product-card">
+            <img class="product-card__img" src="/banner/1513$1$리그오브레전드4.png" alt="리그오브레전드4" loading="lazy" />
+            <span class="product-card__label">리그오브레전드4</span>
+          </article>
         </div>
-      </div>
-
-      <!-- 좌우 버튼 -->
-      <button class="hero__btn hero__btn--prev" aria-label="이전" @click="prevHero">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-      </button>
-      <button class="hero__btn hero__btn--next" aria-label="다음" @click="nextHero">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </button>
-
-      <!-- 인디케이터 -->
-      <div class="hero__dots">
-        <button
-          v-for="i in HERO_COUNT"
-          :key="i"
-          class="hero__dot"
-          :class="{ 'hero__dot--active': heroIndex === i - 1 }"
-          :aria-label="`슬라이드 ${i}`"
-          @click="goHero(i - 1)"
-        />
       </div>
     </section>
 
@@ -196,41 +192,47 @@ onUnmounted(() => {
 
     <div class="page-body">
 
-      <!-- ── 상품 배너 (가로 스크롤) ── -->
-      <section class="product-banner" aria-label="추천 상품">
-        <h2 class="section-title">추천 상품</h2>
-        <div
-          ref="productBannerRef"
-          class="product-banner__track"
-          @mouseenter="stopScroll"
-          @mouseleave="startScroll"
-          @touchstart="stopScroll"
-          @touchend="startScroll"
-        >
-          <article class="product-card">
-            <img class="product-card__img" src="/banner/1512$1$손오공현금.png" alt="손오공현금" loading="lazy" />
-            <span class="product-card__label">손오공현금</span>
-          </article>
-          <article class="product-card">
-            <img class="product-card__img" src="/banner/1513$1$리그오브레전드4.png" alt="리그오브레전드4" loading="lazy" />
-            <span class="product-card__label">리그오브레전드4</span>
-          </article>
-          <article class="product-card">
-            <img class="product-card__img" src="/banner/1512$1$손오공현금.png" alt="손오공현금" loading="lazy" />
-            <span class="product-card__label">손오공현금</span>
-          </article>
-          <article class="product-card">
-            <img class="product-card__img" src="/banner/1513$1$리그오브레전드4.png" alt="리그오브레전드4" loading="lazy" />
-            <span class="product-card__label">리그오브레전드4</span>
-          </article>
-          <article class="product-card">
-            <img class="product-card__img" src="/banner/1512$1$손오공현금.png" alt="손오공현금" loading="lazy" />
-            <span class="product-card__label">손오공현금</span>
-          </article>
-          <article class="product-card">
-            <img class="product-card__img" src="/banner/1513$1$리그오브레전드4.png" alt="리그오브레전드4" loading="lazy" />
-            <span class="product-card__label">리그오브레전드4</span>
-          </article>
+      <!-- ── 히어로 슬라이더 ── -->
+      <section class="hero" aria-label="메인 배너">
+        <div class="hero__viewport">
+          <div
+            class="hero__track"
+            :style="{ transform: `translateX(-${heroIndex * 100}%)` }"
+          >
+            <div class="hero__slide hero__slide--1">
+              <img src="/banner/1512$1$손오공현금.png" alt="손오공현금" class="hero__img" />
+            </div>
+            <div class="hero__slide hero__slide--2">
+              <img src="/banner/1513$1$리그오브레전드4.png" alt="리그오브레전드4" class="hero__img" />
+            </div>
+            <div class="hero__slide hero__slide--3">
+              <img src="/banner/1512$1$손오공현금.png" alt="손오공현금" class="hero__img" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 좌우 버튼 -->
+        <button class="hero__btn hero__btn--prev" aria-label="이전" @click="prevHero">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="hero__btn hero__btn--next" aria-label="다음" @click="nextHero">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+
+        <!-- 인디케이터 -->
+        <div class="hero__dots">
+          <button
+            v-for="i in HERO_COUNT"
+            :key="i"
+            class="hero__dot"
+            :class="{ 'hero__dot--active': heroIndex === i - 1 }"
+            :aria-label="`슬라이드 ${i}`"
+            @click="goHero(i - 1)"
+          />
         </div>
       </section>
 
@@ -340,12 +342,15 @@ onUnmounted(() => {
   width: 100%;
 }
 
-/* ── 히어로 ── */
+/* ── 히어로 (page-body 안에서 풀 너비 돌파) ── */
 .hero {
   position: relative;
-  width: 100%;
   overflow: hidden;
   background: #1a2236;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  width: calc(100% + 2rem);
+  margin-bottom: 0;
 }
 
 .hero__viewport {
@@ -544,10 +549,16 @@ onUnmounted(() => {
   letter-spacing: -0.02em;
 }
 
-/* ── 상품 배너 ── */
+/* ── 상품 배너 (최상단, 풀 너비) ── */
 .product-banner {
-  padding: 1.5rem 0 1rem;
+  background: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.product-banner__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 1rem;
 }
 
 .product-banner__track {
@@ -791,8 +802,31 @@ onUnmounted(() => {
 
 /* ── PC (768px+) ── */
 @media (min-width: 768px) {
+  /* 히어로: page-body 안에서 PC 패딩(2rem) 기준으로 풀 너비 돌파 */
+  .hero {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    width: calc(100% + 4rem);
+  }
+
+  /* PC에서는 이미지 원본 비율 그대로 표시 (짤림 없음) */
   .hero__viewport {
-    aspect-ratio: 16 / 5;
+    aspect-ratio: unset;
+    height: auto;
+  }
+
+  .hero__track {
+    height: auto;
+    align-items: flex-start;
+  }
+
+  .hero__slide {
+    height: auto;
+  }
+
+  .hero__img {
+    height: auto;
+    object-fit: unset;
   }
 
   .hero__btn {
@@ -806,6 +840,11 @@ onUnmounted(() => {
 
   .hero__btn--next {
     right: 1.25rem;
+  }
+
+  /* 추천상품 inner */
+  .product-banner__inner {
+    padding: 1.5rem 2rem 1.25rem;
   }
 
   .shortcuts__list {
