@@ -18,30 +18,38 @@ function goHero(idx: number) {
   heroIndex.value = idx
 }
 
-// ── 상품 배너 가로 스크롤 ──
+// ── 상품 배너 가로 스크롤 (requestAnimationFrame) ──
 const productBannerRef = ref<HTMLElement | null>(null)
-let scrollTimer: ReturnType<typeof setInterval> | null = null
+let rafId: number | null = null
+let scrollPaused = false
+const SCROLL_SPEED = 0.6 // px per frame
+
+function scrollStep() {
+  const el = productBannerRef.value
+  if (el && !scrollPaused) {
+    const max = el.scrollWidth - el.clientWidth
+    if (el.scrollLeft >= max) {
+      el.scrollLeft = 0
+    } else {
+      el.scrollLeft += SCROLL_SPEED
+    }
+  }
+  rafId = requestAnimationFrame(scrollStep)
+}
 
 function startScroll() {
-  const el = productBannerRef.value
-  if (!el) return
-  if (scrollTimer) clearInterval(scrollTimer)
-  scrollTimer = setInterval(() => {
-    const el2 = productBannerRef.value
-    if (!el2) return
-    const max = el2.scrollWidth - el2.clientWidth
-    if (el2.scrollLeft >= max) {
-      el2.scrollLeft = 0
-    } else {
-      el2.scrollLeft += 1
-    }
-  }, 18)
+  scrollPaused = false
+  if (!rafId) rafId = requestAnimationFrame(scrollStep)
 }
 
 function stopScroll() {
-  if (scrollTimer) {
-    clearInterval(scrollTimer)
-    scrollTimer = null
+  scrollPaused = true
+}
+
+function cancelScroll() {
+  if (rafId) {
+    cancelAnimationFrame(rafId)
+    rafId = null
   }
 }
 
@@ -90,7 +98,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (heroTimer) clearInterval(heroTimer)
-  stopScroll()
+  cancelScroll()
 })
 </script>
 
@@ -408,7 +416,7 @@ onUnmounted(() => {
 .hero {
   position: relative;
   overflow: hidden;
-  background: #1a2236;
+  background: #ffffff;
   margin-left: -1rem;
   margin-right: -1rem;
   margin-top: 1.5rem;
@@ -688,7 +696,6 @@ onUnmounted(() => {
   grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1.5rem 0 0.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 @media (min-width: 768px) {
@@ -805,7 +812,6 @@ onUnmounted(() => {
 /* ── 자료 다운로드 ── */
 .download-section {
   padding: 1.75rem 0 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 @media (min-width: 768px) {
@@ -1025,7 +1031,7 @@ onUnmounted(() => {
   .hero__img {
     height: 100%;
     object-fit: contain;
-    background: #1a2236;
+    background: #f5f7fa;
   }
 
   .hero__btn {

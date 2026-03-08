@@ -558,6 +558,6 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 }
 
 :global(body) {
-  background: #f5f6f8;
+  background: #f1f5f9;
 }
 </style>
