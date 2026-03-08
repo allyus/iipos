@@ -85,15 +85,59 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__brand">
-        <AppLogo class="footer__logo-wrap" />
-        <p class="footer__tagline">포스 전문 플랫폼</p>
+      <div class="footer__cols">
+        <!-- 브랜드 -->
+        <div class="footer__col footer__col--brand">
+          <AppLogo class="footer__logo-wrap" />
+          <p class="footer__tagline">포스 전문 거래 플랫폼</p>
+          <p class="footer__desc">매장 창업·양도, 포스 기기 매매,<br>동영상 자료까지 한 곳에서.</p>
+        </div>
+
+        <!-- 서비스 -->
+        <div class="footer__col">
+          <p class="footer__col-title">서비스</p>
+          <ul class="footer__list">
+            <li><RouterLink to="/maejangter">매장장터</RouterLink></li>
+            <li><RouterLink to="/gijangter">기기장터</RouterLink></li>
+            <li><RouterLink to="/video-library">동영상자료실</RouterLink></li>
+          </ul>
+        </div>
+
+        <!-- 고객지원 -->
+        <div class="footer__col">
+          <p class="footer__col-title">고객지원</p>
+          <ul class="footer__list">
+            <li><a href="#contact">문의하기</a></li>
+          </ul>
+        </div>
+
+        <!-- 연락처 -->
+        <div class="footer__col">
+          <p class="footer__col-title">연락처</p>
+          <ul class="footer__list footer__list--info">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+              <span>02-1234-5678</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+              <span>help@iipos.co.kr</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+              <span>평일 09:00 – 18:00</span>
+            </li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer__nav">
-        <RouterLink to="/about">이용약관</RouterLink>
-        <RouterLink to="/about">개인정보처리방침</RouterLink>
-      </nav>
-      <p class="footer__copy">&copy; {{ new Date().getFullYear() }} IIPOS. All rights reserved.</p>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; {{ new Date().getFullYear() }} IIPOS. All rights reserved.</p>
+        <nav class="footer__bottom-nav">
+          <RouterLink to="/about">이용약관</RouterLink>
+          <RouterLink to="/about">개인정보처리방침</RouterLink>
+        </nav>
+      </div>
     </div>
   </footer>
 </template>
@@ -341,56 +385,135 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
 /* ── 푸터 ── */
 .footer {
   margin-top: auto;
-  border-top: 1px solid rgba(0, 0, 0, 0.07);
-  background: #f8f9fc;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: #1a2236;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .footer__inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  padding: 2.5rem 1.25rem 1.5rem;
 }
 
-.footer__brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+/* 컬럼 그리드 */
+.footer__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 1.5rem;
+}
+
+.footer__col--brand {
+  grid-column: 1 / -1;
 }
 
 .footer__logo-wrap {
-  opacity: 0.65;
-  transform: scale(0.82);
-  transform-origin: left center;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+/* 푸터 다크 배경에서 로고 워드마크 색상 보정 */
+.footer__logo-wrap :deep(.logo__pos) {
+  color: #fff;
+}
+
+.footer__logo-wrap :deep(.logo__mark rect:first-child) {
+  fill: #00b87a;
 }
 
 .footer__tagline {
-  font-size: 0.82rem;
-  color: rgba(60, 60, 60, 0.5);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #00b87a;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.footer__desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.6;
   margin: 0;
 }
 
-.footer__nav {
+/* 컬럼 타이틀 */
+.footer__col-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.75rem;
+}
+
+/* 링크 리스트 */
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer__list a {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer__list a:hover {
+  color: #00b87a;
+}
+
+/* 연락처 리스트 */
+.footer__list--info li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.footer__list--info svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #00b87a;
+}
+
+/* 하단 바 */
+.footer__bottom {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer__copy {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+.footer__bottom-nav {
   display: flex;
   gap: 1rem;
 }
 
-.footer__nav a {
-  font-size: 0.82rem;
-  color: rgba(60, 60, 60, 0.5);
+.footer__bottom-nav a {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
   text-decoration: none;
+  transition: color 0.15s;
 }
 
-.footer__nav a:hover {
+.footer__bottom-nav a:hover {
   color: #00b87a;
-}
-
-.footer__copy {
-  font-size: 0.8rem;
-  color: rgba(60, 60, 60, 0.4);
-  margin: 0;
 }
 
 /* ── PC (768px+) ── */
@@ -416,12 +539,21 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
   }
 
   .footer__inner {
+    padding: 3rem 2rem 2rem;
+  }
+
+  .footer__cols {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+
+  .footer__col--brand {
+    grid-column: auto;
+  }
+
+  .footer__bottom {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5rem 2rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
 }
 

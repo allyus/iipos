@@ -62,6 +62,14 @@ const gijangterPosts = [
   { id: 26, title: '[광주] 카드 단말기 최신형 급매', views: 521 },
 ]
 
+// ── 자료 다운로드 ──
+const downloadItems = [
+  { id: 1, title: '안면(매장)', desc: '안면(매장) 어플리케이션으로 연결 됩니다.' },
+  { id: 2, title: '관리자', desc: '관리자 어플리케이션으로 연결 됩니다.' },
+  { id: 3, title: '정산', desc: '정산 어플리케이션으로 연결 됩니다.' },
+  { id: 4, title: '매장ABI', desc: '매장ABI 어플리케이션으로 연결 됩니다.' },
+]
+
 // ── 문의 폼 ──
 const contactForm = ref({
   company: '',
@@ -318,35 +326,11 @@ onUnmounted(() => {
       <section class="download-section" aria-label="자료 다운로드">
         <h2 class="section-title">자료 다운로드</h2>
         <div class="download-grid">
-          <article class="download-card">
+          <article v-for="item in downloadItems" :key="item.id" class="download-card">
             <div class="download-card__icon">📥</div>
             <div class="download-card__body">
-              <h3 class="download-card__title">IIPOS 설치 안내서</h3>
-              <p class="download-card__desc">초기 설치 및 환경 설정 가이드입니다.</p>
-              <button type="button" class="download-card__btn">다운로드</button>
-            </div>
-          </article>
-          <article class="download-card">
-            <div class="download-card__icon">📥</div>
-            <div class="download-card__body">
-              <h3 class="download-card__title">사용자 매뉴얼</h3>
-              <p class="download-card__desc">일반 사용자를 위한 기본 기능 안내입니다.</p>
-              <button type="button" class="download-card__btn">다운로드</button>
-            </div>
-          </article>
-          <article class="download-card">
-            <div class="download-card__icon">📥</div>
-            <div class="download-card__body">
-              <h3 class="download-card__title">관리자 매뉴얼</h3>
-              <p class="download-card__desc">관리자 전용 고급 설정과 관리 기능 설명서입니다.</p>
-              <button type="button" class="download-card__btn">다운로드</button>
-            </div>
-          </article>
-          <article class="download-card">
-            <div class="download-card__icon">📥</div>
-            <div class="download-card__body">
-              <h3 class="download-card__title">자주 묻는 질문(FAQ)</h3>
-              <p class="download-card__desc">자주 문의되는 사용 방법과 해결 방법 모음입니다.</p>
+              <h3 class="download-card__title">{{ item.title }}</h3>
+              <p class="download-card__desc">{{ item.desc }}</p>
               <button type="button" class="download-card__btn">다운로드</button>
             </div>
           </article>
@@ -1095,6 +1079,35 @@ onUnmounted(() => {
 
   .download-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* 게시판 + 문의: 좌우 여백 제거 (page-body 패딩 돌파) */
+  .boards {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    width: calc(100% + 4rem);
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0;
+  }
+
+  .board-preview {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+  }
+
+  .boards > .board-preview:first-child {
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
+  }
+
+  .contact-section {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    width: calc(100% + 4rem);
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .contact-row {
