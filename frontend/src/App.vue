@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import AppLogo from '@/components/AppLogo.vue'
 
 const authStore = useAuthStore()
 const menuOpen = ref(false)
@@ -26,7 +27,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
   <header class="header">
     <div class="header__inner">
       <RouterLink to="/" class="logo" @click="closeMenu">
-        <img src="/logo.png" alt="IIPOS" class="logo__img" />
+        <AppLogo />
       </RouterLink>
 
       <!-- PC 네비 -->
@@ -99,8 +100,8 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <img src="/logo.png" alt="IIPOS" class="footer__logo" />
-        <p class="footer__tagline">포스 전문 플랫폼 IIPOS</p>
+        <AppLogo class="footer__logo-wrap" />
+        <p class="footer__tagline">포스 전문 플랫폼</p>
       </div>
       <nav class="footer__nav">
         <RouterLink to="/about">이용약관</RouterLink>
@@ -138,12 +139,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
   align-items: center;
   flex-shrink: 0;
   margin-right: 0.5rem;
-}
-
-.logo__img {
-  height: 28px;
-  width: auto;
-  display: block;
+  text-decoration: none;
 }
 
 /* PC 네비 */
@@ -378,10 +374,10 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
   gap: 0.75rem;
 }
 
-.footer__logo {
-  height: 22px;
-  width: auto;
-  opacity: 0.5;
+.footer__logo-wrap {
+  opacity: 0.65;
+  transform: scale(0.82);
+  transform-origin: left center;
 }
 
 .footer__tagline {
@@ -417,10 +413,6 @@ onUnmounted(() => window.removeEventListener('keydown', onKeydown))
     padding: 0 2rem;
     height: 64px;
     gap: 0;
-  }
-
-  .logo__img {
-    height: 32px;
   }
 
   .nav-desktop {

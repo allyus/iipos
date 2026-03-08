@@ -119,36 +119,78 @@ onUnmounted(() => {
     <!-- ── 바로가기 ── -->
     <section class="shortcuts">
       <ul class="shortcuts__list">
+
+        <!-- 회원가입 -->
         <li>
           <router-link to="/register" class="shortcut">
-            <span class="shortcut__icon">🌐</span>
+            <span class="shortcut__icon-wrap shortcut__icon-wrap--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="8" r="4"/>
+                <path d="M2 20c0-4 3.6-7 8-7"/>
+                <path d="M19 15v6M16 18h6"/>
+              </svg>
+            </span>
             <span class="shortcut__label">회원가입</span>
           </router-link>
         </li>
+
+        <!-- 매장장터 -->
         <li>
           <router-link to="/maejangter" class="shortcut">
-            <span class="shortcut__icon">🏪</span>
+            <span class="shortcut__icon-wrap shortcut__icon-wrap--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <rect x="9" y="14" width="6" height="8" rx="1"/>
+              </svg>
+            </span>
             <span class="shortcut__label">매장장터</span>
           </router-link>
         </li>
+
+        <!-- 기기장터 -->
         <li>
           <router-link to="/gijangter" class="shortcut">
-            <span class="shortcut__icon">🕹️</span>
+            <span class="shortcut__icon-wrap shortcut__icon-wrap--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="3" width="16" height="11" rx="2"/>
+                <rect x="8" y="17" width="8" height="4" rx="1"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="9" y1="7" x2="9" y2="10"/>
+                <line x1="12" y1="6" x2="12" y2="10"/>
+                <line x1="15" y1="7" x2="15" y2="10"/>
+              </svg>
+            </span>
             <span class="shortcut__label">기기장터</span>
           </router-link>
         </li>
+
+        <!-- 동영상자료실 -->
         <li>
           <router-link to="/video-library" class="shortcut">
-            <span class="shortcut__icon">📽️</span>
+            <span class="shortcut__icon-wrap shortcut__icon-wrap--orange">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="15" height="14" rx="2"/>
+                <path d="M17 9l5-3v12l-5-3V9z"/>
+              </svg>
+            </span>
             <span class="shortcut__label">동영상자료실</span>
           </router-link>
         </li>
+
+        <!-- 문의하기 -->
         <li>
           <a href="#contact" class="shortcut">
-            <span class="shortcut__icon">💬</span>
+            <span class="shortcut__icon-wrap shortcut__icon-wrap--teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <line x1="9" y1="10" x2="15" y2="10"/>
+                <line x1="9" y1="14" x2="13" y2="14"/>
+              </svg>
+            </span>
             <span class="shortcut__label">문의하기</span>
           </a>
         </li>
+
       </ul>
     </section>
 
@@ -403,40 +445,85 @@ onUnmounted(() => {
 
 .shortcuts__list {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 0.875rem 1rem;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
   max-width: 1280px;
-  margin: 0 auto;
 }
 
 .shortcut {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1.1rem 0.5rem;
+  gap: 0.55rem;
+  padding: 0.875rem 0.25rem;
   text-decoration: none;
   color: #374151;
-  transition: color 0.15s, background 0.15s;
+  border-radius: 14px;
+  transition: background 0.18s, transform 0.18s;
 }
 
 .shortcut:hover {
-  color: #00b87a;
-  background: rgba(0, 184, 122, 0.05);
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
 }
 
-.shortcut__icon {
-  font-size: 1.75rem;
-  line-height: 1;
+/* 아이콘 래퍼 (컬러 원형 배경) */
+.shortcut__icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: box-shadow 0.18s;
+}
+
+.shortcut__icon-wrap svg {
+  width: 24px;
+  height: 24px;
+}
+
+.shortcut:hover .shortcut__icon-wrap {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* 컬러 테마 */
+.shortcut__icon-wrap--blue {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: #fff;
+}
+
+.shortcut__icon-wrap--green {
+  background: linear-gradient(135deg, #34d399, #00b87a);
+  color: #fff;
+}
+
+.shortcut__icon-wrap--purple {
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  color: #fff;
+}
+
+.shortcut__icon-wrap--orange {
+  background: linear-gradient(135deg, #fb923c, #ea580c);
+  color: #fff;
+}
+
+.shortcut__icon-wrap--teal {
+  background: linear-gradient(135deg, #2dd4bf, #0d9488);
+  color: #fff;
 }
 
 .shortcut__label {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #374151;
   text-align: center;
   white-space: nowrap;
+  letter-spacing: -0.01em;
 }
 
 /* ── 페이지 본문 ── */
@@ -722,19 +809,27 @@ onUnmounted(() => {
   }
 
   .shortcuts__list {
-    padding: 0 2rem;
+    padding: 1.25rem 2rem;
+    gap: 0.75rem;
   }
 
   .shortcut {
-    padding: 1.25rem 1rem;
+    padding: 1rem 0.5rem;
   }
 
-  .shortcut__icon {
-    font-size: 2rem;
+  .shortcut__icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+  }
+
+  .shortcut__icon-wrap svg {
+    width: 28px;
+    height: 28px;
   }
 
   .shortcut__label {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
   }
 
   .page-body {
