@@ -45,6 +45,23 @@ function stopScroll() {
   }
 }
 
+// ── 게시판 미리보기 ──
+const maejangterPosts = [
+  { id: 30, title: '[강남] 편의점 권리금 양도 (월매출 4천)', views: 2841 },
+  { id: 29, title: '[해운대] 카페 매장 양도 (보증금 포함)', views: 1923 },
+  { id: 28, title: '[수원] PC방 풀세트 매물 (60석)', views: 1654 },
+  { id: 27, title: '[홍대] 노래방 급매 양도 (20룸)', views: 1102 },
+  { id: 26, title: '[천안] 치킨집 매장 매물 (프랜차이즈)', views: 876 },
+]
+
+const gijangterPosts = [
+  { id: 30, title: '[서울] 포스 단말기 일괄 판매 (5대)', views: 1482 },
+  { id: 29, title: '[부산] 바코드 스캐너 (신품급) 저렴하게 판매합니다', views: 934 },
+  { id: 28, title: '[인천] 영수증 프린터 2대 판매 (삼성 SRP-350)', views: 812 },
+  { id: 27, title: '[대구] 현금 서랍 판매합니다 (APG 정품)', views: 674 },
+  { id: 26, title: '[광주] 카드 단말기 최신형 급매', views: 521 },
+]
+
 // ── 문의 폼 ──
 const contactForm = ref({
   company: '',
@@ -75,7 +92,7 @@ onUnmounted(() => {
     <!-- ── 추천 상품 (가로 스크롤) ── -->
     <section class="product-banner" aria-label="추천 상품">
       <div class="product-banner__inner">
-        <h2 class="section-title">추천 상품</h2>
+        <h2 class="section-title">동영상자료</h2>
         <div
           ref="productBannerRef"
           class="product-banner__track"
@@ -114,6 +131,9 @@ onUnmounted(() => {
 
     <!-- ── 바로가기 ── -->
     <section class="shortcuts">
+      <div class="shortcuts__header">
+        <h2 class="section-title">바로가기</h2>
+      </div>
       <ul class="shortcuts__list">
 
         <!-- 회원가입 -->
@@ -191,6 +211,64 @@ onUnmounted(() => {
     </section>
 
     <div class="page-body">
+
+      <!-- ── 게시판 미리보기 ── -->
+      <section class="boards" aria-label="게시판 미리보기">
+        <!-- 매장장터 -->
+        <div class="board-preview">
+          <div class="board-preview__header">
+            <h2 class="board-preview__title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <rect x="9" y="14" width="6" height="8" rx="1"/>
+              </svg>
+              매장장터
+            </h2>
+            <router-link to="/maejangter" class="board-preview__more">더보기</router-link>
+          </div>
+          <ul class="board-preview__list">
+            <li v-for="post in maejangterPosts" :key="post.id" class="board-preview__item">
+              <a href="#" class="board-preview__link">
+                <span class="board-preview__item-title">{{ post.title }}</span>
+                <span class="board-preview__views">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  {{ post.views.toLocaleString() }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 기기장터 -->
+        <div class="board-preview">
+          <div class="board-preview__header">
+            <h2 class="board-preview__title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="3" width="16" height="11" rx="2"/>
+                <rect x="8" y="17" width="8" height="4" rx="1"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+              </svg>
+              기기장터
+            </h2>
+            <router-link to="/gijangter" class="board-preview__more">더보기</router-link>
+          </div>
+          <ul class="board-preview__list">
+            <li v-for="post in gijangterPosts" :key="post.id" class="board-preview__item">
+              <a href="#" class="board-preview__link">
+                <span class="board-preview__item-title">{{ post.title }}</span>
+                <span class="board-preview__views">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  {{ post.views.toLocaleString() }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
 
       <!-- ── 히어로 슬라이더 ── -->
       <section class="hero" aria-label="메인 배너">
@@ -349,8 +427,8 @@ onUnmounted(() => {
   background: #1a2236;
   margin-left: -1rem;
   margin-right: -1rem;
+  margin-top: 1.5rem;
   width: calc(100% + 2rem);
-  margin-bottom: 0;
 }
 
 .hero__viewport {
@@ -448,9 +526,20 @@ onUnmounted(() => {
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+.shortcuts__header {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.875rem 1rem 0;
+}
+
+.shortcuts__header .section-title {
+  margin-bottom: 0;
+}
+
+
 .shortcuts__list {
   list-style: none;
-  padding: 0.875rem 1rem;
+  padding: 0.25rem 1rem 0.875rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -609,10 +698,136 @@ onUnmounted(() => {
   background: #fff;
 }
 
+/* ── 게시판 미리보기 ── */
+.boards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1.5rem 0 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+  .boards {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.board-preview {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.board-preview__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: #f8f9fc;
+}
+
+.board-preview__title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a2236;
+  margin: 0;
+}
+
+.board-preview__title svg {
+  width: 16px;
+  height: 16px;
+  color: #00b87a;
+  flex-shrink: 0;
+}
+
+.board-preview__more {
+  font-size: 0.75rem;
+  color: rgba(60, 60, 60, 0.45);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.board-preview__more:hover {
+  color: #00b87a;
+}
+
+.board-preview__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.board-preview__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.board-preview__item:last-child {
+  border-bottom: none;
+}
+
+.board-preview__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.board-preview__link:hover {
+  background: #f0faf5;
+}
+
+.board-preview__item-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.84rem;
+  color: #1a2236;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.board-preview__link:hover .board-preview__item-title {
+  color: #00b87a;
+}
+
+.board-preview__views {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  color: rgba(60, 60, 60, 0.45);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.board-preview__views svg {
+  width: 12px;
+  height: 12px;
+}
+
 /* ── 자료 다운로드 ── */
 .download-section {
   padding: 1.75rem 0 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+  .download-section {
+    display: none;
+  }
 }
 
 .download-grid {
@@ -809,24 +1024,24 @@ onUnmounted(() => {
     width: calc(100% + 4rem);
   }
 
-  /* PC에서는 이미지 원본 비율 그대로 표시 (짤림 없음) */
+  /* PC에서는 높이 고정 + contain으로 이미지 전체 표시 */
   .hero__viewport {
     aspect-ratio: unset;
-    height: auto;
+    height: 280px;
   }
 
   .hero__track {
-    height: auto;
-    align-items: flex-start;
+    height: 100%;
   }
 
   .hero__slide {
-    height: auto;
+    height: 100%;
   }
 
   .hero__img {
-    height: auto;
-    object-fit: unset;
+    height: 100%;
+    object-fit: contain;
+    background: #1a2236;
   }
 
   .hero__btn {
@@ -847,9 +1062,8 @@ onUnmounted(() => {
     padding: 1.5rem 2rem 1.25rem;
   }
 
-  .shortcuts__list {
-    padding: 1.25rem 2rem;
-    gap: 0.75rem;
+  .shortcuts {
+    display: none;
   }
 
   .shortcut {
