@@ -12,25 +12,16 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: #00b87a;
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    color: hsla(160, 85%, 32%, 1);
+    color: #00a06a;
   }
 }
 
 #app main {
   flex: 1;
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
-
-@media (min-width: 768px) {
-  #app main {
-    padding: 2rem;
-  }
-}
-

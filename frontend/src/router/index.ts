@@ -29,6 +29,21 @@ const router = createRouter({
       component: () => import('../views/RegisterView.vue'),
       meta: { guest: true },
     },
+    {
+      path: '/maejangter',
+      name: 'maejangter',
+      component: () => import('../views/MaejangterView.vue'),
+    },
+    {
+      path: '/gijangter',
+      name: 'gijangter',
+      component: () => import('../views/GijangterView.vue'),
+    },
+    {
+      path: '/video-library',
+      name: 'video-library',
+      component: () => import('../views/VideoLibraryView.vue'),
+    },
   ],
 })
 
